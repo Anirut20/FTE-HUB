@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smo_HUB - Dark Mode</title>
+    <title>Smo_HUB - ศูนย์รวมแผนการเรียน</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- Base Styles --- */
         body {
             font-family: 'Kanit', sans-serif;
             background-color: #111827; /* bg-gray-900 */
@@ -21,8 +20,6 @@
             padding: 30px;
             box-sizing: border-box;
         }
-
-        /* --- Main Container --- */
         .container {
             background-color: #1f2937; /* bg-gray-800 */
             border-radius: 20px;
@@ -33,8 +30,6 @@
             text-align: center;
             border: 1px solid #374151; /* border-gray-700 */
         }
-
-        /* --- Typography --- */
         .title {
             font-weight: 800;
             font-size: 3.2em;
@@ -45,13 +40,11 @@
             background-clip: text;
             text-fill-color: transparent;
         }
-
         .subtitle {
             color: #9ca3af; /* text-gray-400 */
             font-size: 1.2em;
             margin-bottom: 50px;
         }
-
         .section-title {
             font-weight: 700;
             color: #e5e7eb; /* text-gray-200 */
@@ -62,14 +55,11 @@
             border-bottom: 2px solid #4b5563; /* border-gray-600 */
             display: inline-block;
         }
-
-        /* --- Button & Card Layout --- */
         .button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
         }
-
         .link-button {
             display: flex;
             align-items: center;
@@ -82,44 +72,39 @@
             transition: all 0.3s ease;
             border: 1px solid #4b5563; /* border-gray-600 */
         }
-
         .link-button:hover {
             transform: translateY(-5px);
             background-color: #4b5563; /* bg-gray-600 */
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            border-color: #60a5fa; /* blue-400 */
+            border-color: #63b3ed;
         }
-
         .link-button .icon {
             flex-shrink: 0;
             width: 40px;
             height: 40px;
             margin-right: 15px;
         }
-
         .link-button .text-content {
             text-align: left;
             line-height: 1.4;
         }
-
         .link-button .maintext {
             font-size: 1.1em;
             font-weight: 600;
         }
-
         .link-button .subtext {
             font-size: 0.85em;
             font-weight: 400;
             opacity: 0.8;
         }
 
-        /* --- SVG Icons Colors --- */
+        /* SVG Icons */
         .icon-electrical { fill: #60a5fa; } /* blue-400 */
         .icon-mechanical { fill: #f87171; } /* red-400 */
         .icon-civil { fill: #fb923c; } /* orange-400 */
         .icon-computer { fill: #4ade80; } /* green-400 */
 
-        /* --- Responsive Adjustments --- */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             body { padding: 15px; }
             .container { padding: 25px; }
@@ -139,25 +124,25 @@
         <div class="department-section">
             <h2 class="section-title">ครุศาสตร์วิศวกรรมไฟฟ้า</h2>
             <div class="button-grid">
-                <a href="ELECTRIC/TEE.html" class="link-button">
+                <a href="TEE.html" class="link-button">
                     <svg class="icon icon-electrical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 1v9h7l-8 13v-9H5l8-13z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">วิศวกรรมไฟฟ้าและการศึกษา (TEE)</div>
+                        <div class="maintext">วิศวกรรมไฟฟ้าและการศึกษา (5 ปี)</div>
                         <div class="subtext">Electrical Engineering and Education</div>
                     </div>
                 </a>
-                <a href="ELECTRIC/TE.html" class="link-button">
+                <a href="TE.html" class="link-button">
                     <svg class="icon icon-electrical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 1v9h7l-8 13v-9H5l8-13z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">ครุศาสตร์ไฟฟ้า (TE)</div>
+                        <div class="maintext">ครุศาสตร์ไฟฟ้า (4 ปี)</div>
                         <div class="subtext">Electrical Engineering Program</div>
                     </div>
                 </a>
-                <a href="ELECTRIC/TTE.html" class="link-button">
+                <a href="TTE.html" class="link-button">
                     <svg class="icon icon-electrical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 1v9h7l-8 13v-9H5l8-13z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">แผนการเรียนครุศาสตร์อุตสาหกรรมบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า (หลักสูตรเทียบโอน 3 ปี)</div>
-                        <div class="subtext">Telecommunication and Electronics Technology</div>
+                        <div class="maintext">ไฟฟ้า (เทียบโอน 3 ปี)</div>
+                        <div class="subtext">Electrical Engineering (Transfer)</div>
                     </div>
                 </a>
             </div>
@@ -167,32 +152,32 @@
         <div class="department-section">
             <h2 class="section-title">ครุศาสตร์วิศวกรรมเครื่องกล</h2>
             <div class="button-grid">
-                <a href="mechanical/TM.html" class="link-button">
-                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                <a href="TM.html" class="link-button">
+                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">วิศวกรรมเครื่องกล (TM)</div>
-                        <div class="subtext">Mechanical Engineering Program</div>
+                        <div class="maintext">วิศวกรรมเครื่องกล (5 ปี)</div>
+                        <div class="subtext">Mechanical Engineering</div>
                     </div>
                 </a>
-                 <a href="mechanical/TT.html" class="link-button">
-                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                <a href="TP.html" class="link-button">
+                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">ครุศาสตร์แมคคาทรอนิกส์ (TT)</div>
-                        <div class="subtext">Mechatronics Engineering Program</div>
+                        <div class="maintext">การผลิตและอุตสาหการ (4 ปี)</div>
+                        <div class="subtext">Production and Industrial</div>
                     </div>
                 </a>
-                <a href="mechanical/TP.html" class="link-button">
-                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                 <a href="TTP.html" class="link-button">
+                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59-1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">ครุศาสตร์อุตสาหการ (TP)</div>
-                        <div class="subtext">Production Engineering Program</div>
+                        <div class="maintext">การผลิต (เทียบโอน 3 ปี)</div>
+                        <div class="subtext">Production Engineering (Transfer)</div>
                     </div>
                 </a>
-                <a href="mechanical/TTP.html" class="link-button">
-                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+                 <a href="TT.html" class="link-button">
+                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69-.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69-.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59-1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">เทคโนโลยีการผลิต (TTP)</div>
-                        <div class="subtext">Production Technology Program</div>
+                        <div class="maintext">แมคคาทรอนิกส์ (4 ปี)</div>
+                        <div class="subtext">Mechatronics Engineering</div>
                     </div>
                 </a>
             </div>
@@ -202,10 +187,10 @@
         <div class="department-section">
             <h2 class="section-title">ครุศาสตร์วิศวกรรมโยธา</h2>
             <div class="button-grid">
-                <a href="CEE/CEE.html" class="link-button">
+                <a href="CEE.html" class="link-button">
                      <svg class="icon icon-civil" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M1 21h22L12 3 1 21zm3.45-2h15.1L12 6.54 4.45 19z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">วิศวกรรมโยธาและการศึกษา (CEE)</div>
+                        <div class="maintext">วิศวกรรมโยธาและการศึกษา (5 ปี)</div>
                         <div class="subtext">Civil Engineering and Education</div>
                     </div>
                 </a>
@@ -216,18 +201,18 @@
         <div class="department-section">
             <h2 class="section-title">ครุศาสตร์คอมพิวเตอร์ศึกษา</h2>
             <div class="button-grid">
-                <a href="Computer/CED.html" class="link-button">
+                <a href="CED.html" class="link-button">
                     <svg class="icon icon-computer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">คอมพิวเตอร์ศึกษา (CED)</div>
-                        <div class="subtext">Computer Education Program</div>
+                        <div class="maintext">คอมพิวเตอร์ศึกษา (เทียบโอน 3 ปี)</div>
+                        <div class="subtext">Computer Education (Transfer)</div>
                     </div>
                 </a>
-                 <a href="Computer/TCT.html" class="link-button">
+                 <a href="TCT.html" class="link-button">
                     <svg class="icon icon-computer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
                     <div class="text-content">
-                        <div class="maintext">เทคโนโลยีคอมพิวเตอร์ (TCT)</div>
-                        <div class="subtext">Computer Technology Program</div>
+                        <div class="maintext">เทคโนโลยีคอมพิวเตอร์ (เทียบโอน 3 ปี)</div>
+                        <div class="subtext">Computer Technology (Transfer)</div>
                     </div>
                 </a>
             </div>

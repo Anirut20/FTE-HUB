@@ -5,34 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แผนการเรียนหลักสูตรครุศาสตร์ไฟฟ้า (4 ปี)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5;
+            font-family: 'Kanit', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
             display: flex;
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
             padding: 20px;
             box-sizing: border-box;
-            overflow-y: auto; /* Allow scrolling for long content */
+            overflow-y: auto;
         }
         .main-container {
-            background-color: #ffffff;
+            background-color: #1f2937; /* bg-gray-800 */
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             padding: 30px;
             width: 100%;
-            max-width: 900px; /* Adjust max-width for better layout */
-            overflow-x: hidden; /* Hide horizontal scrollbar */
+            max-width: 900px;
+            overflow-x: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 1px solid #374151;
         }
         .flowchart-container {
-            display: none; /* Hidden by default, shown after branch selection */
+            display: none; /* Hidden by default */
             width: 100%;
             flex-direction: column;
             align-items: center;
@@ -48,60 +52,44 @@
         }
         .semester-title {
             font-weight: 700;
-            color: #333;
+            color: #e5e7eb;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             font-size: 1.8em;
         }
         .course-card {
-            background-color: #e3f2fd; /* Light blue */
-            border: 1px solid #90caf9; /* Medium blue */
+            background-color: #374151;
+            border: 1px solid #4b5563;
             border-radius: 8px;
             padding: 12px;
             font-size: 0.9em;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
             cursor: pointer;
             word-wrap: break-word;
-            width: 95%; /* Make cards take more width in single column */
-            max-width: 350px; /* Max width for cards */
+            width: 95%;
+            max-width: 380px;
+            color: #d1d5db;
         }
-        .course-card.core {
-            background-color: #ffe0b2; /* Light orange */
-            border-color: #ffb74d; /* Medium orange */
+        .course-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
-        .course-card.major {
-            background-color: #c8e6c9; /* Light green */
-            border-color: #81c784; /* Medium green */
-        }
-        .course-card.major_elective { /* New type for major electives */
-            background-color: #f8bbd0; /* Light pink */
-            border-color: #f06292; /* Medium pink */
-        }
-        .course-card.elective {
-            background-color: #d1c4e9; /* Light purple */
-            border-color: #9575cd; /* Medium purple */
-        }
-        .course-card.practice {
-            background-color: #bbdefb; /* Another light blue, distinct from general */
-            border-color: #64b5f6; /* Medium blue */
-        }
-        /* Highlight for English-taught courses */
-        .course-card.english-taught {
-            border: 2px solid #3b82f6; /* A prominent blue border */
-            box-shadow: 0 0 8px rgba(59, 130, 246, 0.7); /* A blue glow */
-        }
-        /* Highlight for previously studied courses */
+        .course-card.general { border-left: 5px solid #60a5fa; }
+        .course-card.core { border-left: 5px solid #fb923c; }
+        .course-card.major { border-left: 5px solid #4ade80; }
+        .course-card.major_elective { border-left: 5px solid #f06292; }
+        .course-card.elective { border-left: 5px solid #9575cd; }
+        .course-card.practice { border-left: 5px solid #22d3ee; }
+        .course-card.english-taught { box-shadow: 0 0 8px rgba(59, 130, 246, 0.6); }
         .course-card.previously-studied {
-            background-color: #fffde7; /* Light yellow */
-            border-color: #ffee58; /* Yellow */
-            box-shadow: 0 0 8px rgba(255, 238, 88, 0.7); /* Yellow glow */
+            background-color: #434442;
+            box-shadow: 0 0 8px rgba(255, 238, 88, 0.5);
         }
-
         .unit-credit {
             font-size: 0.8em;
-            color: #555;
+            color: #9ca3af;
             margin-top: 5px;
             display: block;
         }
@@ -117,73 +105,39 @@
             display: flex;
             align-items: center;
             font-size: 0.85em;
-            color: #555;
+            color: #9ca3af;
         }
         .label-color {
             width: 18px;
             height: 18px;
             border-radius: 4px;
             margin-right: 8px;
-            border: 1px solid;
+            background-color: #374151;
         }
-
-        /* Modal Styles */
         .modal {
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         }
         .modal-content {
+            background-color: #1f2937;
+            color: #d1d5db;
             max-height: 80vh;
             overflow-y: auto;
+            border: 1px solid #4b5563;
         }
-
-        /* Responsive adjustments */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .main-container {
-                padding: 15px;
-                max-width: 100%;
-            }
-            .semester-title {
-                font-size: 1.5em;
-            }
-            .course-card {
-                padding: 10px;
-                font-size: 0.85em;
-                width: 100%;
-            }
-            .unit-credit {
-                font-size: 0.75em;
-            }
-            .subject-type-label {
-                gap: 10px;
-                margin-bottom: 20px;
-            }
-            .label-item {
-                font-size: 0.8em;
-            }
-            .label-color {
-                width: 16px;
-                height: 16px;
-            }
-            button {
-                padding: 10px 18px;
-                font-size: 0.9em;
-            }
-            select {
-                padding: 8px 12px;
-                font-size: 0.9em;
-            }
+            body { padding: 10px; }
+            .main-container { padding: 15px; }
+            .semester-title { font-size: 1.5em; }
+            .course-card { padding: 10px; font-size: 0.85em; width: 100%; }
         }
     </style>
 </head>
 <body>
     <div class="main-container">
         <div id="branchSelection" class="flex flex-col items-center justify-center min-h-[50vh] text-center w-full">
-            <h1 class="text-3xl font-bold text-gray-800 mb-8">
+            <h1 class="text-3xl font-bold text-white mb-8">
                 เลือกแขนงวิชาที่คุณสนใจ
             </h1>
             <div class="flex flex-col md:flex-row gap-6">
@@ -194,37 +148,35 @@
                     แขนงวิชาวิศวกรรมอิเล็กทรอนิกส์และโทรคมนาคม
                 </button>
             </div>
-            <button id="backToMainIndexBtn" class="mt-8 px-6 py-3 bg-gray-400 text-white rounded-lg shadow-md hover:bg-gray-500 transition-colors">
+            <button id="backToMainIndexBtn" class="mt-8 px-6 py-3 bg-gray-600 text-gray-200 rounded-lg shadow-md hover:bg-gray-500 transition-colors">
                 &larr; กลับไปหน้าหลักรวมภาควิชา
             </button>
         </div>
 
         <div id="curriculumDisplayArea" class="flowchart-container">
-            <button id="backToBranchBtn" class="mb-6 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg shadow hover:bg-gray-300 transition-colors self-start">
+            <button id="backToBranchBtn" class="mb-6 px-4 py-2 bg-gray-600 text-gray-200 rounded-lg shadow hover:bg-gray-500 transition-colors self-start">
                 &larr; กลับไปเลือกแขนงวิชา
             </button>
 
-            <h1 id="mainCurriculumTitle" class="text-3xl font-bold text-center text-gray-800 mb-8"></h1>
+            <h1 id="mainCurriculumTitle" class="text-3xl font-bold text-center text-white mb-8"></h1>
 
             <div class="subject-type-label">
-                <div class="label-item"><span class="label-color bg-e3f2fd border-blue-400"></span> หมวดวิชาศึกษาทั่วไป</div>
-                <div class="label-item"><span class="label-color bg-ffe0b2 border-orange-400"></span> วิชาบังคับ (พื้นฐานวิศวกรรม)</div>
-                <div class="label-item"><span class="label-color bg-c8e6c9 border-green-400"></span> วิชาบังคับ (เฉพาะครุศาสตร์)</div>
-                <div class="label-item"><span class="label-color bg-f8bbd0 border-pink-400"></span> วิชาเลือก (เฉพาะแขนง)</div>
-                <div class="label-item"><span class="label-color bg-d1c4e9 border-purple-400"></span> วิชาเลือก (ทั่วไป/เสรี)</div>
-                <div class="label-item"><span class="label-color bg-bbdefb border-blue-500"></span> ปฏิบัติการสอน / โครงงาน</div>
-                <div class="label-item"><span class="label-color border-blue-600 shadow-[0_0_8px_rgba(59,130,246,0.7)]"></span> วิชาสอนเป็นภาษาอังกฤษ</div>
-                <div class="label-item"><span class="label-color bg-fffde7 border-yellow-400 shadow-[0_0_8px_rgba(255,238,88,0.7)]"></span> วิชาที่เคยเรียนมาแล้ว</div>
+                 <div class="label-item"><span class="label-color border-l-4 border-blue-400"></span>ศึกษาทั่วไป</div>
+                <div class="label-item"><span class="label-color border-l-4 border-orange-400"></span>บังคับ(พื้นฐาน)</div>
+                <div class="label-item"><span class="label-color border-l-4 border-green-400"></span>บังคับ(เฉพาะ)</div>
+                <div class="label-item"><span class="label-color border-l-4 border-pink-400"></span>เลือก(เฉพาะ)</div>
+                <div class="label-item"><span class="label-color border-l-4 border-purple-400"></span>เลือก(ทั่วไป)</div>
+                <div class="label-item"><span class="label-color border-l-4 border-cyan-400"></span>ปฏิบัติการ</div>
+                <div class="label-item"><span class="label-color shadow-[0_0_8px_rgba(59,130,246,0.6)]"></span>สอน(อังกฤษ)</div>
+                <div class="label-item"><span class="label-color shadow-[0_0_8px_rgba(255,238,88,0.5)]"></span>เคยเรียนแล้ว</div>
             </div>
 
-            <div id="semesterDisplay" class="semester-display">
-                </div>
+            <div id="semesterDisplay" class="semester-display"></div>
 
             <div class="flex flex-col items-center gap-4 mt-8 w-full">
-                <select id="semesterSelect" class="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full md:w-auto max-w-xs">
-                    </select>
+                <select id="semesterSelect" class="px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full md:w-auto max-w-xs"></select>
                 <div class="flex justify-center gap-4 w-full max-w-sm">
-                    <button id="prevBtn" class="flex-1 px-6 py-3 bg-gray-300 text-gray-800 rounded-lg shadow-md hover:bg-gray-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button id="prevBtn" class="flex-1 px-6 py-3 bg-gray-600 text-gray-200 rounded-lg shadow-md hover:bg-gray-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                         เทอมก่อนหน้า
                     </button>
                     <button id="nextBtn" class="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
@@ -233,30 +185,27 @@
                 </div>
             </div>
 
-            <div id="courseModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center z-50 hidden modal">
-                <div class="bg-white p-8 rounded-lg shadow-xl max-w-lg w-full m-4 relative modal-content">
-                    <button id="closeModalBtn" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl font-bold">&times;</button>
-                    <h2 id="modalCourseTitle" class="text-2xl font-bold mb-2 text-center text-gray-800"></h2>
-                    <p id="modalCourseEnglishTitle" class="text-gray-600 italic mb-4 text-center"></p>
-                    <p id="modalCourseUnits" class="text-gray-600 mb-6 text-center"></p>
+            <div id="courseModal" class="fixed inset-0 flex items-center justify-center z-50 hidden modal">
+                <div class="p-8 rounded-lg shadow-xl max-w-lg w-full m-4 relative modal-content">
+                    <button id="closeModalBtn" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
+                    <h2 id="modalCourseTitle" class="text-2xl font-bold mb-2 text-center text-white"></h2>
+                    <p id="modalCourseEnglishTitle" class="text-gray-400 italic mb-4 text-center"></p>
+                    <p id="modalCourseUnits" class="text-gray-400 mb-6 text-center"></p>
 
                     <div id="modalPrerequisites" class="mb-4">
-                        <h3 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-2">วิชาที่ต้องผ่านก่อนหน้า:</h3>
-                        <ul id="prereqList" class="list-disc list-inside text-gray-600 pl-4">
-                            </ul>
-                        <p id="noPrereqs" class="text-gray-500 italic hidden">ไม่มีวิชาที่ต้องผ่านก่อนหน้าระบุไว้</p>
+                        <h3 class="text-lg font-semibold text-gray-300 border-b border-gray-600 pb-2 mb-2">วิชาที่ต้องผ่านก่อนหน้า:</h3>
+                        <ul id="prereqList" class="list-disc list-inside text-gray-400 pl-4"></ul>
+                        <p id="noPrereqs" class="text-gray-500 italic hidden">ไม่มี</p>
                     </div>
 
                     <div id="modalSubsequentCourses">
-                        <h3 class="text-lg font-semibold text-gray-700 border-b pb-2 mb-2">วิชาที่ต่อเนื่อง:</h3>
-                        <ul id="subsequentList" class="list-disc list-inside text-gray-600 pl-4">
-                            </ul>
-                        <p id="noSubsequent" class="text-gray-500 italic hidden">ไม่มีวิชาต่อเนื่องระบุไว้</p>
+                        <h3 class="text-lg font-semibold text-gray-300 border-b border-gray-600 pb-2 mb-2">วิชาที่ต่อเนื่อง:</h3>
+                        <ul id="subsequentList" class="list-disc list-inside text-gray-400 pl-4"></ul>
+                        <p id="noSubsequent" class="text-gray-500 italic hidden">ไม่มี</p>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <script>
@@ -451,7 +400,7 @@
                     { id: "0202133xx-8", name: "วิชาเลือกเฉพาะแขนงวิชาวิศวกรรมอิเล็กทรอนิกส์และโทรคมนาคม 8", englishName: "Electronics and Telecommunication Engineering Elective Course 8", units: "3(x-x-x)", type: "major_elective", isEnglishTaught: false, isUserPreviouslyStudied: false, prerequisites: [], subsequentCourses: [] },
                     { id: "0202133xx-9", name: "วิชาเลือกเฉพาะแขนงวิชาวิศวกรรมอิเล็กทรอนิกส์และโทรคมนาคม 9", englishName: "Electronics and Telecommunication Engineering Elective Course 9", units: "3(x-x-x)", type: "major_elective", isEnglishTaught: false, isUserPreviouslyStudied: false, prerequisites: [], subsequentCourses: [] },
                     { id: "0202133xx-10", name: "วิชาเลือกเฉพาะแขนงวิชาวิศวกรรมอิเล็กทรอนิกส์และโทรคมนาคม 10", englishName: "Electronics and Telecommunication Engineering Elective Course 10", units: "3(x-x-x)", type: "major_elective", isEnglishTaught: false, isUserPreviouslyStudied: false, prerequisites: [], subsequentCourses: [] },
-                    { id: "0202133xx-11", name: "วิชาเลือกเฉพาะแขนงวิชาวิศวกรรมอิเล็กทรอนิกส์และโทรคมนาคม 11", englishName: "Electronics and Telecommunication Engineering Elective Course 11", units: "3(x-x-x)", type: "major_elective", isEnglishTaught: false, isUserPreviouslyStudied: false, prerequisites: [], subsequentCourses: [] },
+                    { id: "0202133xx-11", name: "วิชาเลือกเฉพาะแขนึงวิชาวิศวกรรมอิเล็กทรอนิกส์และโทรคมนาคม 11", englishName: "Electronics and Telecommunication Engineering Elective Course 11", units: "3(x-x-x)", type: "major_elective", isEnglishTaught: false, isUserPreviouslyStudied: false, prerequisites: [], subsequentCourses: [] },
                     { id: "08XXXXXXX", name: "วิชาเลือกในกลุ่มสังคมศาสตร์และมนุษย์ศาสตร์", englishName: "Social and Human Elective Course", units: "3(x-x-x)", type: "elective", isEnglishTaught: false, isUserPreviouslyStudied: false, prerequisites: [], subsequentCourses: [] },
                     { id: "XXXXXXXXX-2", name: "วิชาเลือกเสรี 2", englishName: "Free Elective Course 2", units: "3(x-x-x)", type: "elective", isEnglishTaught: false, isUserPreviouslyStudied: false, prerequisites: [], subsequentCourses: [] }
                 ]
@@ -467,7 +416,7 @@
             {
                 title: "ปี 4 ภาคการศึกษาที่ 2",
                 courses: [
-                    { id: "020213112", name: "ปฏิบัติการสอนด้านวิศวกรรมไฟฟ้าในสถานศึกษา 2", englishName: "Teaching Practice in Electrical Engineerng II", units: "6(540 ชั่วโมง)", type: "practice", isEnglishTaught: false, isUserPreviouslyStudied: false, prerequisites: [{ id: "020213111", name: "ปฏิบัติการสอนด้านวิศวกรรมไฟฟ้าในสถานศึกษา  1", englishName: "Teaching Practice in Electrical Engineerng 1" }], subsequentCourses: [] }
+                    { id: "020213112", name: "ปฏิบัติการสอนด้านวิศวกรรมไฟฟ้าในสถานศึกษา 2", englishName: "Teaching Practice in Electrical Engineerng II", units: "6(540 ชั่วโมง)", type: "practice", isEnglishTaught: false, isUserPreviouslyStudied: false, prerequisites: [{ id: "020213111", name: "ปฏิบัติการสอนด้านวิศวกรรมไฟฟ้าในสถานศึกษา  1", englishName: "Teaching Practice in Electrical Engineerng 1" }], subsequentCourses: [] }
                 ]
             }
         ];
@@ -482,10 +431,8 @@
         const curriculumDisplayArea = document.getElementById('curriculumDisplayArea');
         const powerSystemBtn = document.getElementById('powerSystemBtn');
         const electronicsTelecomBtn = document.getElementById('electronicsTelecomBtn');
-        // New: Declare the back buttons here
         const backToBranchBtn = document.getElementById('backToBranchBtn');
-        const backToMainIndexBtn = document.getElementById('backToMainIndexBtn');
-
+        const backToMainIndexBtnOnBranch = document.getElementById('backToMainIndexBtn');
 
         const mainCurriculumTitle = document.getElementById('mainCurriculumTitle');
         const semesterDisplay = document.getElementById('semesterDisplay');
@@ -503,11 +450,8 @@
         const subsequentList = document.getElementById('subsequentList');
         const noSubsequent = document.getElementById('noSubsequent');
 
-        /**
-         * Populates the semester dropdown with options.
-         */
         function populateSemesterSelect() {
-            semesterSelect.innerHTML = ''; // Clear existing options
+            semesterSelect.innerHTML = ''; 
             currentCurriculumData.forEach((semester, index) => {
                 const option = document.createElement('option');
                 option.value = index;
@@ -516,27 +460,19 @@
             });
         }
 
-        /**
-         * Renders the specified semester's courses into the display area.
-         * @param {number} index The index of the semester to render.
-         */
         function renderSemester(index) {
             const semester = currentCurriculumData[index];
-            if (!semester) return; // Exit if semester data is not found
+            if (!semester) return; 
 
-            // Clear previous content
             semesterDisplay.innerHTML = '';
 
-            // Create and append the semester title
             const semesterTitleElem = document.createElement('div');
             semesterTitleElem.classList.add('semester-title');
             semesterTitleElem.textContent = semester.title;
             semesterDisplay.appendChild(semesterTitleElem);
 
-            // Create and append course cards for the current semester
             semester.courses.forEach(course => {
                 const courseCardElem = document.createElement('div');
-                // Add base class and specific type class for styling
                 courseCardElem.classList.add('course-card', course.type);
                 if (course.isEnglishTaught) {
                     courseCardElem.classList.add('english-taught');
@@ -545,32 +481,23 @@
                     courseCardElem.classList.add('previously-studied');
                 }
                 courseCardElem.innerHTML = `
-                    ${course.id} ${course.name} <br> <span class="text-gray-600 italic">${course.englishName}</span>
+                    ${course.id} ${course.name} <br> <span class="text-gray-500 italic">${course.englishName}</span>
                     <span class="unit-credit">หน่วยกิต: ${course.units}</span>
                 `;
-                // Attach click listener to each course card
                 courseCardElem.addEventListener('click', () => openCourseModal(course));
                 semesterDisplay.appendChild(courseCardElem);
             });
 
-            // Update button states (disabled/enabled) based on current semester index
             prevBtn.disabled = index === 0;
             nextBtn.disabled = index === currentCurriculumData.length - 1;
-
-            // Synchronize dropdown selection
             semesterSelect.value = index;
         }
 
-        /**
-         * Opens the course details modal and populates it with course data.
-         * @param {object} course The course object to display.
-         */
         function openCourseModal(course) {
             modalCourseTitle.textContent = `${course.id} ${course.name}`;
             modalCourseEnglishTitle.textContent = course.englishName;
             modalCourseUnits.textContent = `หน่วยกิต: ${course.units}`;
 
-            // Populate prerequisites
             prereqList.innerHTML = '';
             if (course.prerequisites && course.prerequisites.length > 0) {
                 noPrereqs.classList.add('hidden');
@@ -583,7 +510,6 @@
                 noPrereqs.classList.remove('hidden');
             }
 
-            // Populate subsequent courses
             subsequentList.innerHTML = '';
             if (course.subsequentCourses && course.subsequentCourses.length > 0) {
                 noSubsequent.classList.add('hidden');
@@ -599,38 +525,27 @@
             courseModal.classList.remove('hidden');
         }
 
-        /**
-         * Closes the course details modal.
-         */
         function closeCourseModal() {
             courseModal.classList.add('hidden');
         }
 
-        /**
-         * Loads and displays the curriculum for the selected branch.
-         * @param {Array<Object>} branchData The curriculum data for the selected branch.
-         * @param {string} branchDisplayName The display name of the selected branch.
-         */
         function loadCurriculum(branchData, branchDisplayName) {
             currentCurriculumData = branchData;
             currentBranchName = branchDisplayName;
-            currentSemesterIndex = 0; // Reset to first semester for new branch
+            currentSemesterIndex = 0; 
 
             mainCurriculumTitle.textContent = `แผนการเรียนครุศาสตร์อุตสาหกรรมบัณฑิต สาขาวิชาวิศวกรรมไฟฟ้า (4 ปี) แขนงวิชา${currentBranchName}`;
 
             populateSemesterSelect();
             renderSemester(currentSemesterIndex);
 
-            branchSelection.classList.add('hidden'); // Hide branch selection
-            curriculumDisplayArea.style.display = 'flex'; // Show curriculum display
+            branchSelection.style.display = 'none'; 
+            curriculumDisplayArea.style.display = 'flex';
         }
 
-        /**
-         * Resets the display to show the branch selection within the current TE.html file.
-         */
         function backToBranchSelection() {
-            curriculumDisplayArea.style.display = 'none'; // Hide curriculum display
-            branchSelection.classList.remove('hidden'); // Show branch selection
+            curriculumDisplayArea.style.display = 'none';
+            branchSelection.style.display = 'flex';
         }
 
 
@@ -643,16 +558,12 @@
             loadCurriculum(electronicsTelecomCurriculum, "วิศวกรรมอิเล็กทรอนิกส์และโทรคมนาคม");
         });
 
-        // Event listener for the "Back to Branch Selection" button (within curriculum display)
         backToBranchBtn.addEventListener('click', backToBranchSelection);
 
-        // Event listener for the NEW "Back to Main Index Page" button (on branch selection screen)
-        backToMainIndexBtn.addEventListener('click', () => {
-            // This path needs to go up one level (from ELECTRIC/) to Smo_HUB/ then find index.html
+        backToMainIndexBtnOnBranch.addEventListener('click', () => {
             window.location.href = '../index.html'; 
         });
 
-        // Event listener for the "Previous Semester" button
         prevBtn.addEventListener('click', () => {
             if (currentSemesterIndex > 0) {
                 currentSemesterIndex--;
@@ -660,7 +571,6 @@
             }
         });
 
-        // Event listener for the "Next Semester" button
         nextBtn.addEventListener('click', () => {
             if (currentSemesterIndex < currentCurriculumData.length - 1) {
                 currentSemesterIndex++;
@@ -668,15 +578,13 @@
             }
         });
 
-        // Event listener for the semester dropdown
         semesterSelect.addEventListener('change', (event) => {
             currentSemesterIndex = parseInt(event.target.value);
             renderSemester(currentSemesterIndex);
         });
 
-        // Event listener for closing the modal
         closeModalBtn.addEventListener('click', closeCourseModal);
-        courseModal.addEventListener('click', (e) => { // Close modal when clicking outside content
+        courseModal.addEventListener('click', (e) => { 
             if (e.target === courseModal) {
                 closeCourseModal();
             }
@@ -684,4 +592,4 @@
 
     </script>
 </body>
-</html>
+</ht

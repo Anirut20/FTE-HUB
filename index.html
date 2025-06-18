@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smo_HUB - ศูนย์รวมแผนการเรียน</title>
+    <title>FTE-HUB - ศูนย์รวมแผนการเรียน</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,8 +11,8 @@
     <style>
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            color: #d1d5db; /* text-gray-300 */
+            background-color: #111827;
+            color: #d1d5db;
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -21,14 +21,14 @@
             box-sizing: border-box;
         }
         .container {
-            background-color: #1f2937; /* bg-gray-800 */
+            background-color: #1f2937;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             padding: 40px;
             width: 100%;
             max-width: 1000px;
             text-align: center;
-            border: 1px solid #374151; /* border-gray-700 */
+            border: 1px solid #374151;
         }
         .title {
             font-weight: 800;
@@ -41,18 +41,18 @@
             text-fill-color: transparent;
         }
         .subtitle {
-            color: #9ca3af; /* text-gray-400 */
+            color: #9ca3af;
             font-size: 1.2em;
             margin-bottom: 50px;
         }
         .section-title {
             font-weight: 700;
-            color: #e5e7eb; /* text-gray-200 */
+            color: #e5e7eb;
             font-size: 1.8em;
             margin-top: 40px;
             margin-bottom: 25px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #4b5563; /* border-gray-600 */
+            border-bottom: 2px solid #4b5563;
             display: inline-block;
         }
         .button-grid {
@@ -64,17 +64,17 @@
             display: flex;
             align-items: center;
             padding: 20px;
-            background-color: #374151; /* bg-gray-700 */
+            background-color: #374151;
             color: white;
             border-radius: 12px;
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
-            border: 1px solid #4b5563; /* border-gray-600 */
+            border: 1px solid #4b5563;
         }
         .link-button:hover {
             transform: translateY(-5px);
-            background-color: #4b5563; /* bg-gray-600 */
+            background-color: #4b5563;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
             border-color: #63b3ed;
         }
@@ -98,16 +98,45 @@
             opacity: 0.8;
         }
 
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .modal-content {
+            background-color: #1f2937;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            width: 100%;
+            max-width: 550px;
+            border: 1px solid #4b5563;
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
         /* SVG Icons */
-        .icon-electrical { fill: #60a5fa; } /* blue-400 */
-        .icon-mechanical { fill: #f87171; } /* red-400 */
-        .icon-civil { fill: #fb923c; } /* orange-400 */
-        .icon-computer { fill: #4ade80; } /* green-400 */
+        .icon-electrical { fill: #60a5fa; }
+        .icon-mechanical { fill: #f87171; }
+        .icon-civil { fill: #fb923c; }
+        .icon-computer { fill: #4ade80; }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             body { padding: 15px; }
-            .container { padding: 25px; }
+            .container, .modal-content { padding: 25px; }
             .title { font-size: 2.2em; }
             .subtitle { font-size: 1em; margin-bottom: 30px; }
             .section-title { font-size: 1.5em; }
@@ -116,8 +145,31 @@
     </style>
 </head>
 <body>
+    
+    <!-- Welcome Modal -->
+    <div id="welcomeModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="text-2xl font-bold text-white mb-4 text-center">FTE-HUB</h2>
+            <p class="text-gray-300 mb-4 text-center">
+                ศูนย์รวมข้อมูลแผนการเรียนหลักสูตรต่างๆ ของคณะครุศาสตร์อุตสาหกรรม จัดทำขึ้นเพื่ออำนวยความสะดวกให้นักศึกษาวางแผนการเรียนได้อย่างมีประสิทธิภาพ
+            </p>
+            <div class="text-gray-300 text-sm mb-5 text-center">
+                <p class="font-semibold">จัดทำและพัฒนาโดย</p>
+                <p>คณะสโมสรนักศึกษาคณะครุศาสตร์อุตสาหกรรม ประจำปีการศึกษา 2568</p>
+            </div>
+            <div class="bg-gray-900/50 p-3 rounded-lg text-sm text-yellow-300 border border-yellow-500/30">
+                <b class="font-bold">หมายเหตุสำคัญ:</b>
+                <p class="text-yellow-400">ข้อมูลหลักสูตรอ้างอิงจากแผนการเรียนปี พ.ศ. 2565-2566 เป็นหลัก ซึ่งอาจมีการเปลี่ยนแปลงได้ ขอให้ใช้เพื่อการวางแผนเบื้องต้นและตรวจสอบกับประกาศทางการของภาควิชาอีกครั้ง</p>
+            </div>
+            <button id="closeModalBtn" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-transform transform hover:scale-105">
+                รับทราบและเข้าสู่เว็บไซต์
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
     <div class="container">
-        <h1 class="title">ยินดีต้อนรับสู่ Smo_HUB</h1>
+        <h1 class="title">FTE-HUB</h1>
         <p class="subtitle">ศูนย์รวมแผนการเรียนของภาควิชาครุศาสตร์อุตสาหกรรม</p>
 
         <!-- Electrical Engineering -->
@@ -153,28 +205,28 @@
             <h2 class="section-title">ครุศาสตร์วิศวกรรมเครื่องกล</h2>
             <div class="button-grid">
                 <a href="TM.html" class="link-button">
-                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69-.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69-.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
                     <div class="text-content">
                         <div class="maintext">วิศวกรรมเครื่องกล (5 ปี)</div>
                         <div class="subtext">Mechanical Engineering</div>
                     </div>
                 </a>
                 <a href="TP.html" class="link-button">
-                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69-.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61-.22l2.49-1c.52.4 1.08.73 1.69-.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
                     <div class="text-content">
                         <div class="maintext">การผลิตและอุตสาหการ (4 ปี)</div>
                         <div class="subtext">Production and Industrial</div>
                     </div>
                 </a>
                  <a href="TTP.html" class="link-button">
-                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59-1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69-.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12-.64l2 3.46c.12.22.39.3.61-.22l2.49-1c.52.4 1.08.73 1.69-.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
                     <div class="text-content">
                         <div class="maintext">การผลิต (เทียบโอน 3 ปี)</div>
                         <div class="subtext">Production Engineering (Transfer)</div>
                     </div>
                 </a>
                  <a href="TT.html" class="link-button">
-                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69-.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69-.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59-1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                    <svg class="icon icon-mechanical" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69-.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12-.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69-.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
                     <div class="text-content">
                         <div class="maintext">แมคคาทรอนิกส์ (4 ปี)</div>
                         <div class="subtext">Mechatronics Engineering</div>
@@ -218,5 +270,33 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const welcomeModal = document.getElementById('welcomeModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            // Show modal only if it hasn't been shown in this session
+            if (!sessionStorage.getItem('fteHubWelcomeShown')) {
+                welcomeModal.style.display = 'flex';
+            } else {
+                welcomeModal.style.display = 'none';
+            }
+
+            const closeModal = () => {
+                welcomeModal.style.display = 'none';
+                sessionStorage.setItem('fteHubWelcomeShown', 'true');
+            };
+
+            closeModalBtn.addEventListener('click', closeModal);
+            
+            // Optional: Close modal if user clicks on the overlay
+            welcomeModal.addEventListener('click', (e) => {
+                if (e.target === welcomeModal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
